@@ -23,6 +23,8 @@ cd build
 ```
 Make sure you change the default.yaml file in config folder!
 
+## please wait for the gif to load...
+
 ![simpleVO](doc/simpleVO.gif)
 
 ## Things to do
