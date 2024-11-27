@@ -60,6 +60,7 @@ void Viewer::ThreadLoop() {
         if (current_frame_) {
             DrawFrame(current_frame_, green);
             FollowCurrentFrame(vis_camera);
+            DrawMapPoints();
 
             cv::Mat img = PlotFrameImage();
             cv::imshow("image", img);
@@ -92,13 +93,13 @@ cv::Mat Viewer::PlotFrameImage() {
 
 void Viewer::FollowCurrentFrame(pangolin::OpenGlRenderState& vis_camera) {
     SE3 Twc = current_frame_->Pose().inverse();
-    pangolin::OpenGlMatrix m(Twc.matrix());
-    vis_camera.Follow(m, true);
+    // pangolin::OpenGlMatrix m(Twc.matrix());
+    // vis_camera.Follow(m, true);
 }
 
 void Viewer::DrawFrame(Frame::Ptr frame, const float* color) {
     SE3 Twc = frame->Pose().inverse();
-    const float sz = 1.0;
+    const float sz = 10.0;
     const int line_width = 2.0;
     const float fx = 400;
     const float fy = 400;
@@ -145,10 +146,10 @@ void Viewer::DrawFrame(Frame::Ptr frame, const float* color) {
 }
 
 void Viewer::DrawMapPoints() {
-    const float red[3] = {1.0, 0, 0};
-    for (auto& kf : active_keyframes_) {
-        DrawFrame(kf.second, red);
-    }
+    const float red[3] = {1, 0, 0};
+    // for (auto& kf : active_keyframes_) {
+    //     DrawFrame(kf.second, red);
+    // }
 
     glPointSize(2);
     glBegin(GL_POINTS);

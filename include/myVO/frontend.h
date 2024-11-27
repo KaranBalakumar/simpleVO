@@ -2,7 +2,7 @@
 #ifndef MYVO_FRONTEND_H
 #define MYVO_FRONTEND_H
 
-#include <opencv2/features2d.hpp>
+#include <opencv4/opencv2/features2d.hpp>
 
 #include "myVO/common_include.h"
 #include "myVO/feature.h"

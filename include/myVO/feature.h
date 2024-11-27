@@ -3,7 +3,7 @@
 #ifndef MYVO_FEATURE_H
 #define MYVO_FEATURE_H
 
-#include <opencv2/features2d.hpp>
+#include <opencv4/opencv2/features2d.hpp>
 #include <memory>
 #include "myVO/common_include.h"
 

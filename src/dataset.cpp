@@ -3,7 +3,7 @@
 
 #include <boost/format.hpp>
 #include <fstream>
-#include <opencv2/opencv.hpp>
+#include <opencv4/opencv2/opencv.hpp>
 using namespace std;
 
 namespace myVO
@@ -21,7 +21,7 @@ bool Dataset::Init(){
 
     for(int i=0; i<4; i++){
         char camera_name[3];
-        for(int k=0; k<4; ++k){
+        for(int k=0; k<3; ++k){
             fin >> camera_name[k];
         }
         double projection_data[12];

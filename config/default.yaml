@@ -1,8 +1,9 @@
 %YAML:1.0
 # data
 # the tum dataset directory, change it to yours! 
-# dataset_dir: /media/karan/Data/Dataset/Kitti/dataset/sequences/00
-dataset_dir: /mnt/1A9286BD92869CBF/Dataset/Kitti/dataset/sequences/00
+dataset_dir: /home/karan/Data/Dataset/Kitti/dataset/sequences/00
+# dataset_dir: /mnt/1A9286BD92869CBF/Dataset/Kitti/dataset/sequences/00
+# dataset_dir: /home/karan/Photo-SLAM/data/KITTI/sequences/02
 
 # camera intrinsics
 camera.fx: 517.3
