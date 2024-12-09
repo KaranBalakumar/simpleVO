@@ -36,4 +36,4 @@ The odometry data will be written to pose.txt file in result directory
 ## Things to do
 - Use ORB features
 - Add loop closure thread with Bag of Words(DBoW3)
-- Visualize the detected sparse featurepoints in the Pangolin Viewer [DONE]
+- ~~Visualize the detected sparse featurepoints in the Pangolin Viewer~~
