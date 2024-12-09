@@ -1,6 +1,8 @@
 # simpleVO 
 This repository is an example for using g2o to run visual odometry on KITTI dataset in C++
 
+![simpleVO](doc/simpleVO.gif)
+
 ### Installation Dependencies
 1. pangolin: <https://github.com/stevenlovegrove/Pangolin>
 2. opencv4 (build from source is preferred)
@@ -27,8 +29,6 @@ Make sure you change the default.yaml file in config folder!
 ./viewPose
 ```
 The odometry data will be written to pose.txt file in result directory
-
-![simpleVO](doc/simpleVO.gif)
 
 ![et](doc/et.png)
 ![gt](doc/gt.png)
