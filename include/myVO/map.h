@@ -59,7 +59,7 @@ class Map{
 
     Frame::Ptr current_frame_ = nullptr;
 
-    int num_active_keyframe_ = 7;
+    int num_active_keyframes_ = 7;
 };
 
 } // namespace myVO

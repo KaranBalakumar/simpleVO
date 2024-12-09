@@ -8,13 +8,13 @@ void Map::InsertKeyFrame(Frame::Ptr frame){
     current_frame_ = frame;
     if(keyframes_.find(frame->keyframe_id_) == keyframes_.end()){
         keyframes_.insert(make_pair(frame->keyframe_id_, frame));
-        keyframes_.insert(std::make_pair(frame->keyframe_id_, frame));
+        // active_keyframes_.insert(make_pair(frame->keyframe_id_, frame));
     }else{
         keyframes_[frame->keyframe_id_] = frame;
         active_keyframes_[frame->keyframe_id_] = frame;
     }
 
-    if(active_keyframes_.size() > num_active_keyframe_){
+    if(active_keyframes_.size() > num_active_keyframes_){
         RemoveOldKeyframe();
     }
 }
@@ -68,6 +68,7 @@ void Map::RemoveOldKeyframe(){
         }
     }
     for(auto feat : frame_to_remove->features_right_){
+        if (feat == nullptr) continue;
         auto mp = feat->map_point_.lock();
         if(mp){
             mp->RemoveObservation(feat);

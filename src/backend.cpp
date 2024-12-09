@@ -96,7 +96,7 @@ void Backend::Optimize(Map::KeyframesType &keyframes, Map::LandmarksType &landma
                 v->setEstimate(landmark.second->Pos());
                 v->setId(landmark_id + max_kf_id + 1);
                 v->setMarginalized(true);
-                vertices_landmarks.insert({landmark_id, v});void writePos();
+                vertices_landmarks.insert({landmark_id, v});
                 optimizer.addVertex(v);
             }
 

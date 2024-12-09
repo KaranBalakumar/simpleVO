@@ -28,9 +28,10 @@ Make sure you change the default.yaml file in config folder!
 ```
 The odometry data will be written to pose.txt file in result directory
 
-## please wait for the gif to load...
-
 ![simpleVO](doc/simpleVO.gif)
+
+![et](doc/et.png)
+![gt](doc/gt.png)
 
 ## Things to do
 - Use ORB features
