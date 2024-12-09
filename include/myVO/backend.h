@@ -39,6 +39,8 @@ class Backend{
     // close the backend thread
     void Stop();
 
+    void writePos();
+
     private:
     // Backend thread
     void BackendLoop();

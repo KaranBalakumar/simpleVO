@@ -96,7 +96,7 @@ void Backend::Optimize(Map::KeyframesType &keyframes, Map::LandmarksType &landma
                 v->setEstimate(landmark.second->Pos());
                 v->setId(landmark_id + max_kf_id + 1);
                 v->setMarginalized(true);
-                vertices_landmarks.insert({landmark_id, v});
+                vertices_landmarks.insert({landmark_id, v});void writePos();
                 optimizer.addVertex(v);
             }
 
@@ -162,6 +162,31 @@ void Backend::Optimize(Map::KeyframesType &keyframes, Map::LandmarksType &landma
     for(auto &v : vertices_landmarks){
         landmarks.at(v.first)->SetPos(v.second->estimate());
     }
+}
+
+void Backend::writePos(){
+    Map::KeyframesType kfs = map_->GetAllKeyFrames();
+    std::string filename = "/home/karan/simpleVO/result/pose.txt";
+
+    // Open the file in write mode
+    std::ofstream outFile(filename);
+
+    // Check if the file was opened successfully
+    if (!outFile) {
+        std::cerr << "Error: Could not open the file " << filename << " for writing." << std::endl;
+    }
+
+    // Write each entry in the dataset to the file
+    for(const auto &keyframe: kfs){
+        auto kf = keyframe.second;
+        auto pos = kf->Pose().inverse();
+        outFile << pos.translation()[0] << " " << pos.translation()[1] << " " << pos.translation()[2] << "\n";
+    }
+
+    // Close the file
+    outFile.close();
+
+    std::cout << "Data has been written to " << filename << std::endl;
 }
 
 } // namespace myVO

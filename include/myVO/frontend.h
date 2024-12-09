@@ -3,6 +3,7 @@
 #define MYVO_FRONTEND_H
 
 #include <opencv4/opencv2/features2d.hpp>
+#include "sophus/se3.hpp"
 
 #include "myVO/common_include.h"
 #include "myVO/feature.h"
@@ -135,7 +136,7 @@ class Frontend{
     int num_features_needed_for_keyframe_ = 80;
 
     //utilities
-    cv::Ptr<cv::GFTTDetector> gftt_; // feature detector in opencv    
+    cv::Ptr<cv::FeatureDetector> gftt_; // feature detector in opencv    
 };
 
 }// namespace myVO

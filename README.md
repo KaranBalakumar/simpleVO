@@ -18,15 +18,21 @@ make
 
 ### Running the Code
 ```c++
-cd build
-../bin/run_kitti_stereo
+./run_kitti_stereo
 ```
 Make sure you change the default.yaml file in config folder!
+
+### Visualizing the Odometry
+```c++
+./viewPose
+```
+The odometry data will be written to pose.txt file in result directory
 
 ## please wait for the gif to load...
 
 ![simpleVO](doc/simpleVO.gif)
 
 ## Things to do
-- Add loop closure with Bag of Words(DBoW3)
-- Visualize the detected sparse featurepoints in the Pangolin Viewer 
+- Use ORB features
+- Add loop closure thread with Bag of Words(DBoW3)
+- Visualize the detected sparse featurepoints in the Pangolin Viewer [DONE]

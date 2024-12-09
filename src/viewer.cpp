@@ -1,6 +1,3 @@
-//
-// Created by gaoxiang on 19-5-4.
-//
 #include "myVO/viewer.h"
 #include "myVO/feature.h"
 #include "myVO/frame.h"
@@ -29,11 +26,11 @@ void Viewer::UpdateMap() {
     assert(map_ != nullptr);
     active_keyframes_ = map_->GetActiveKeyFrames();
     active_landmarks_ = map_->GetActiveMapPoints();
-    map_updated = true;
+    map_updated_ = true;
 }
 
 void Viewer::ThreadLoop() {
-    pangolin::CreateWindowAndBind("myVO", 1024, 768);
+    pangolin::CreateWindowAndBind("MySLAM", 1024, 768);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -60,15 +57,16 @@ void Viewer::ThreadLoop() {
         if (current_frame_) {
             DrawFrame(current_frame_, green);
             FollowCurrentFrame(vis_camera);
-            DrawMapPoints();
-
             cv::Mat img = PlotFrameImage();
+            // img.release();
+            // std::cout << "PLOT FROM IMAGE" << std::endl;
             cv::imshow("image", img);
             cv::waitKey(1);
         }
 
         if (map_) {
             DrawMapPoints();
+            // std::cout<< "STARTED DRAW_MAP_POINTS" << std::endl;
         }
 
         pangolin::FinishFrame();
@@ -93,13 +91,13 @@ cv::Mat Viewer::PlotFrameImage() {
 
 void Viewer::FollowCurrentFrame(pangolin::OpenGlRenderState& vis_camera) {
     SE3 Twc = current_frame_->Pose().inverse();
-    // pangolin::OpenGlMatrix m(Twc.matrix());
-    // vis_camera.Follow(m, true);
+    pangolin::OpenGlMatrix m(Twc.matrix());
+    vis_camera.Follow(m, true);
 }
 
 void Viewer::DrawFrame(Frame::Ptr frame, const float* color) {
     SE3 Twc = frame->Pose().inverse();
-    const float sz = 10.0;
+    const float sz = 1.0;
     const int line_width = 2.0;
     const float fx = 400;
     const float fy = 400;
@@ -146,10 +144,10 @@ void Viewer::DrawFrame(Frame::Ptr frame, const float* color) {
 }
 
 void Viewer::DrawMapPoints() {
-    const float red[3] = {1, 0, 0};
-    // for (auto& kf : active_keyframes_) {
-    //     DrawFrame(kf.second, red);
-    // }
+    const float red[3] = {1.0, 0, 0};
+    for (auto& kf : active_keyframes_) {
+        DrawFrame(kf.second, red);
+    }
 
     glPointSize(2);
     glBegin(GL_POINTS);
@@ -161,4 +159,4 @@ void Viewer::DrawMapPoints() {
     glEnd();
 }
 
-}  // namespace myVO
+}  // namespace myslam
